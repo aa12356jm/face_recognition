@@ -1,3 +1,8 @@
+'''
+加载2张图像并提取人脸特征作为查询库，然后读取一张未知图像并提取特征，
+依次和查询比对，计算相似度
+'''
+
 import face_recognition
 from PIL import Image, ImageDraw
 

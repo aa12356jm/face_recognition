@@ -1,3 +1,7 @@
+'''
+加载图像进行人脸检测（hog）
+'''
+
 from PIL import Image
 import face_recognition
 

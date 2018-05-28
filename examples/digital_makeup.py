@@ -1,3 +1,7 @@
+'''
+检测人脸关键点，然后画出眉毛，嘴唇等等
+'''
+
 from PIL import Image, ImageDraw
 import face_recognition
 

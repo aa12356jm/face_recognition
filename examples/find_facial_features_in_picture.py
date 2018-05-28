@@ -1,3 +1,8 @@
+'''
+检测并画出图像中的人脸关键点
+'''
+
+
 from PIL import Image, ImageDraw
 import face_recognition
 
@@ -5,6 +10,7 @@ import face_recognition
 image = face_recognition.load_image_file("biden.jpg")
 
 # Find all facial features in all the faces in the image
+#检测人脸关键点
 face_landmarks_list = face_recognition.face_landmarks(image)
 
 print("I found {} face(s) in this photograph.".format(len(face_landmarks_list)))

@@ -1,3 +1,8 @@
+'''
+读取本地照片作为人脸库，检测到的当前帧中的人脸和人脸库进行一一比对
+这个版本是比较慢的进行人脸识别和编码的版本（原因是：直接是每帧的原始图像进行人脸识别和编码，可以优化将每帧图像缩小为1/4大小后进行检测和编码）
+'''
+
 import face_recognition
 import cv2
 
@@ -19,14 +24,20 @@ obama_face_encoding = face_recognition.face_encodings(obama_image)[0]
 biden_image = face_recognition.load_image_file("biden.jpg")
 biden_face_encoding = face_recognition.face_encodings(biden_image)[0]
 
+#读取第三张图像，抽取特征
+cui_image = face_recognition.load_image_file("cui.jpeg")
+cui_face_encoding = face_recognition.face_encodings(cui_image)[0]
+
 # Create arrays of known face encodings and their names
 known_face_encodings = [
     obama_face_encoding,
-    biden_face_encoding
+    biden_face_encoding,
+    cui_face_encoding
 ]
 known_face_names = [
     "Barack Obama",
-    "Joe Biden"
+    "Joe Biden",
+    "cui"
 ]
 
 while True:
@@ -37,6 +48,7 @@ while True:
     rgb_frame = frame[:, :, ::-1]
 
     # Find all the faces and face enqcodings in the frame of video
+    #人脸检测，人脸编码，这里直接使用原图像的大小进行人脸检测和编码，优化版本中是把图像缩小为1/4后进行检测和编码
     face_locations = face_recognition.face_locations(rgb_frame)
     face_encodings = face_recognition.face_encodings(rgb_frame, face_locations)
 

@@ -56,7 +56,7 @@ def _trim_css_to_bounds(css, image_shape):
     """
     return max(css[0], 0), min(css[1], image_shape[1]), min(css[2], image_shape[0]), max(css[3], 0)
 
-
+#使用欧式距离计算人脸相似度
 def face_distance(face_encodings, face_to_compare):
     """
     Given a list of face encodings, compare them to a known face encoding and get a euclidean distance

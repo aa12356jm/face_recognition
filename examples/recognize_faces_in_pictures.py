@@ -1,3 +1,8 @@
+'''
+加载图像并提取特征作为查询库，加载一张未知图像并提取特征后和查询一一比对，根据相似度识别人物
+'''
+
+
 import face_recognition
 
 # Load the jpg files into numpy arrays

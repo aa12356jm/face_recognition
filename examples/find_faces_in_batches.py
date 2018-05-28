@@ -1,3 +1,8 @@
+'''
+采集视频中的图像，每个batch（128帧）处理一次，使用gpu进行加速处理
+'''
+
+
 import face_recognition
 import cv2
 
@@ -36,6 +41,7 @@ while video_capture.isOpened():
     frames.append(frame)
 
     # Every 128 frames (the default batch size), batch process the list of frames to find faces
+    #每一个batch(128帧)处理一次，集中识别这128帧中的所有人脸
     if len(frames) == 128:
         batch_of_face_locations = face_recognition.batch_face_locations(frames, number_of_times_to_upsample=0)
 
@@ -43,6 +49,7 @@ while video_capture.isOpened():
         for frame_number_in_batch, face_locations in enumerate(batch_of_face_locations):
             number_of_faces_in_frame = len(face_locations)
 
+            #计算属于第几帧
             frame_number = frame_count - 128 + frame_number_in_batch
             print("I found {} face(s) in frame #{}.".format(number_of_faces_in_frame, frame_number))
 

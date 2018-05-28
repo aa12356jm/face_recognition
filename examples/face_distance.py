@@ -1,3 +1,7 @@
+'''
+人脸相似度比对
+'''
+
 import face_recognition
 
 # Often instead of just checking if two faces match or not (True or False), it's helpful to see how similar they are.
@@ -15,6 +19,7 @@ known_obama_image = face_recognition.load_image_file("obama.jpg")
 known_biden_image = face_recognition.load_image_file("biden.jpg")
 
 # Get the face encodings for the known images
+#提取人脸特征，编码为128维向量
 obama_face_encoding = face_recognition.face_encodings(known_obama_image)[0]
 biden_face_encoding = face_recognition.face_encodings(known_biden_image)[0]
 
@@ -28,6 +33,7 @@ image_to_test = face_recognition.load_image_file("obama2.jpg")
 image_to_test_encoding = face_recognition.face_encodings(image_to_test)[0]
 
 # See how far apart the test image is from the known faces
+#使用测试图像和已知的2幅人脸图像对比计算距离
 face_distances = face_recognition.face_distance(known_encodings, image_to_test_encoding)
 
 for i, face_distance in enumerate(face_distances):
